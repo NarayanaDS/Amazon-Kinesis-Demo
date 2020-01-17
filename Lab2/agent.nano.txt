@@ -1,0 +1,19 @@
+{
+  "cloudwatch.emitMetrics": true,
+  "kinesis.endpoint": "kinesis.us-east-1.amazonaws.com",
+  "firehose.endpoint": "",
+
+  "flows": [
+    {
+      "filePattern": "/var/log/devonair/*.log",
+      "kinesisStream": "ProductOrders",
+      "partitionKeyOption": "RANDOM",
+      "dataProcessingOptions": [
+         {
+            "optionName": "CSVTOJSON",
+            "customFieldNames": ["InvoiceNo", "StockCode", "Description", "Quantity", "InvoiceDate", "UnitPrice", "Customer", "Country"]
+         }
+      ]
+    }
+  ]
+}
